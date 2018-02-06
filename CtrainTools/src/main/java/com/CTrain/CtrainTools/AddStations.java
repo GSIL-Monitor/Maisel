@@ -11,44 +11,23 @@ public class AddStations {
         driver.findElement(By.id("txt_account")).sendKeys("test_user");
         driver.findElement(By.id("txt_password")).sendKeys("123456");
         driver.findElement(By.id("login_button")).click();
+        // 直接使用driver.wait（）异常
         synchronized (driver)
         {
             driver.wait(2000);
             System.out.println(driver.getPageSource());
+            // 跳转至测试环境刷数据页
             driver.findElement(By.xpath("//a[@href='/phenix-admin/SystemManage/SetTestData/Index']")).click();
             driver.wait(2000);
-            System.out.println(driver.getPageSource());
-            System.out.println("*************");
+            // 切换为右侧页面，无此句无法定位后面元素
             driver.switchTo().frame("iframecygj-01");
-            System.out.println(driver.getPageSource());
-            System.out.println("*************");
-//            System.out.println(driver.getWindowHandle());
-//            System.out.println("*************");
             driver.findElement(By.id("from")).sendKeys("上海");
             driver.findElement(By.id("to")).sendKeys("昆山");
-            driver.findElement(By.id("departDate")).clear();
+            driver.findElement(By.id("departDate")).clear();//清除默认的当前日期
             driver.findElement(By.id("departDate")).sendKeys("20180227");
             driver.findElement(By.id("btn_set")).click();
 
         }
-//        try {
-//            driver.wait(3000);
-//            System.out.println(driver.getPageSource());
-//            driver.findElement(By.xpath("/c/a[@href='/phenix-admin/SystemManage/SetTestData/Index']")).click();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
-//        driver.findElement(By.xpath("a[text()='测试环境数据']")).click();
-//        driver.findElement(By.xpath("//a[text()='测试环境数据']")).click();
-//        driver.findElement(By.linkText("测试环境数据")).click();
-//        driver.findElement(By.xpath("//a[@href='/phenix-admin/SystemManage/SetTestData/Index']")).click();
-//        driver.findElement(By.xpath("text='测试环境数据'")).click();
-//        driver.findElement(By.cssSelector("a[data-id=\"cygj-01\"]")).click();
-//        driver.findElement(By.id("cygj-01")).click();
-//        driver.wait(30);
-
-//        driver.quit();
 
     }
 

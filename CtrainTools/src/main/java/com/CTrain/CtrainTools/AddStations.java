@@ -25,10 +25,15 @@ public class AddStations {
             driver.findElement(By.id("to")).sendKeys("昆山");
             driver.findElement(By.id("departDate")).clear();//清除默认的当前日期
             driver.findElement(By.id("departDate")).sendKeys("20180227");
+            //刷入站站车次数据
             driver.findElement(By.id("btn_set")).click();
+            driver.wait(2000);
+            //刷入跨站抢数据
+            driver.findElement(By.id("btn_set_stagger_grab")).click();
+            driver.wait(5000);
 
         }
-
+        driver.quit();
     }
 
 }
